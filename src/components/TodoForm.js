@@ -3,15 +3,19 @@ import React from 'react'
 class TodoForm extends React.Component {
 
   state = {
-    item: {},
-    pass: {},
+    value: ""
   }
 
   getItem = (e) => {
-    this.setState({item: {value: e.target.value, done: false}})
-    this.props.clearInput(e.target.value)
+    // this.setState({item: {value: e.target.value, done: false}})
+    this.setState({value:e.target.value});
   }
 
+  onClick = () => {
+    // this.setState({item: {value: this.state.value, done: false}})
+    this.props.addItem(this.state.value);
+    this.setState({value:""})
+  }
   render(){
     console.log(this.props.inputText)
     return(
@@ -20,11 +24,11 @@ class TodoForm extends React.Component {
           className="item-input"
           onChange={(e)=> this.getItem(e)}
           type="text"
-          value={this.props.inputText}
+          value={this.state.value}
         />
         <button
           className="btn btn__add"
-          onClick={this.state.pass=this.props.inputText?this.state.item:{value:"", done:false}, ()=>this.props.addItem(this.state.pass)}
+          onClick={this.onClick}
         ></button>
       </div>
     )

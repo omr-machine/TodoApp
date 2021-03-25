@@ -13,14 +13,14 @@ class TodoContainer extends React.Component {
     }
   }
 
-  addItem = (item) => {
-    if (item.value.trim() !== "") {
+  addItem = (value) => {
+    value = value.trim()
+    if (value !== ""){
+      const item= {value: value, done: false}
       const newTodos = [...this.state.todos]
-      newTodos.push({...item})
+      newTodos.push(item)
       this.setState({todos: newTodos, inputText: ""})
       //this.setState({inputText: ""})
-    } else {
-      console.log("EError")
     }
 
   }
